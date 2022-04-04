@@ -128,7 +128,7 @@ public class PersonView {
     }
 
 
-    private void backOrClose(String text) {
+    private void close(String text) {
         if(text.equals("close")) {
             work = false;
         }
@@ -136,7 +136,7 @@ public class PersonView {
 
     private Long chekId(String id) {
         long personId;
-        backOrClose(id);
+        close(id);
         try {
             personId = Long.parseLong(id);
             return personId;
@@ -149,34 +149,34 @@ public class PersonView {
     private Person writePerson(Person person) throws IOException {
         System.out.println(name);
         String firstName = scanner.readLine();
-        backOrClose(firstName);
+        close(firstName);
         person.setFirstName(firstName);
 
         System.out.println(lastName);
         String secondName = scanner.readLine();
-        backOrClose(secondName);
+        close(secondName);
         person.setLastName(secondName);
 
 
         System.out.println(patronymic);
         String pat = scanner.readLine();
-        backOrClose(pat);
+        close(pat);
         person.setPatronymic(pat);
 
         System.out.println(post);
         String po = scanner.readLine();
-        backOrClose(po);
+        close(po);
         person.setPost(po);
 
         System.out.println(organization);
 
         String org = scanner.readLine();
-        backOrClose(org);
+        close(org);
         person.setOrganization(org);
 
         System.out.println(mail);
         String ma = scanner.readLine();
-        backOrClose(ma);
+        close(ma);
         person.setMail(ma);
 
         System.out.println(number);
