@@ -19,7 +19,6 @@ public class PersonServiceImpl implements PersonService {
 
     private final String error = "error";
     private final String ok = "ok";
-    private final String not_found = "not_found";
 
     public PersonServiceImpl(PersonRepository clientRepository) {
         this.repository = clientRepository;
@@ -68,7 +67,8 @@ public class PersonServiceImpl implements PersonService {
             list = new ArrayList<>();
             person.setId(1L);
         } else {
-            person.setId((long) list.size() + 1);
+            person.setId(getId());
+
         }
         list.add(person);
         try {
@@ -101,6 +101,17 @@ public class PersonServiceImpl implements PersonService {
         } catch (JAXBException ignored) {
         }
         return null;
+    }
+
+    private long getId() {
+        List<Person> list = getPersons();
+        if(list == null || list.isEmpty()) {
+            return 1L;
+        }
+        long id = list.stream()
+                .map(Person::getId)
+                .max(Long::compare).get();
+        return id + 1;
     }
 
 }
